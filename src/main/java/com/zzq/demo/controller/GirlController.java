@@ -1,8 +1,11 @@
 package com.zzq.demo.controller;
 
+import com.zzq.demo.aspect.HttpAspect;
 import com.zzq.demo.domain.Girl;
 import com.zzq.demo.repository.GirlRepository;
 import com.zzq.demo.service.GirlService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +16,8 @@ import java.util.Optional;
 
 @RestController
 public class GirlController {
+
+    private final static Logger logger = LoggerFactory.getLogger(GirlController.class);
     @Autowired
     private GirlRepository girlRepository;
 
@@ -23,7 +28,7 @@ public class GirlController {
     * */
     @GetMapping(value = "/girls")
     public List<Girl> girlList(){
-        System.out.println("girlList()");
+        logger.info("girlList()");
         return girlRepository.findAll();
     }
 /*
